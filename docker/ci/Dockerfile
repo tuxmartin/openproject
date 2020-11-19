@@ -19,6 +19,7 @@ ENV BUNDLER_VERSION="2.1.4"
 ENV BUNDLE_WITHOUT="development:production:docker"
 ENV DATABASE_URL=postgres://app:p4ssw0rd@127.0.0.1/app
 ENV CHROME_SOURCE_URL=https://dl.google.com/dl/linux/direct/google-chrome-stable_current_amd64.deb
+ARG JOBS=4
 
 RUN wget --no-verbose -O /tmp/$(basename $CHROME_SOURCE_URL) $CHROME_SOURCE_URL && \
   apt install -y /tmp/$(basename $CHROME_SOURCE_URL) && rm -f /tmp/$(basename $CHROME_SOURCE_URL)
