@@ -15,7 +15,7 @@ chown $USER:$USER /home/$USER/openproject/tmp
 if [ "$1" == "" ]; then
 	exec bash
 else
-	su - dev -c "time bundle install -j8"
-	su - dev -c "time bash ./script/ci/cache_prepare.sh"
-	su - dev -c "time bash script/ci/runner.sh units 5 1"
+	su dev -c "time bundle install -j8"
+	su dev -c "time bash ./script/ci/cache_prepare.sh"
+	su dev -c "time bash script/ci/runner.sh units 5 1"
 fi
