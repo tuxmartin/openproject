@@ -10,7 +10,7 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt buster-pgdg main" > /etc/a
 
 RUN apt-get update -qq && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    postgresql-9.6 postgresql-client-9.6 time
+    postgresql-9.6 postgresql-client-9.6 time pandoc default-jre-headless
 
 ENV CI=true
 ENV RAILS_ENV=test

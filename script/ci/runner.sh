@@ -49,5 +49,5 @@ case "$1" in
             cd frontend && npm run test
             ;;
         *)
-            bundle exec rake parallel:$1 -- --group-number $2 --only-group $3 --seed $CI_SEED
+            bundle exec rake parallel:$1 --trace -- --group-number $2 --only-group $3 --seed $CI_SEED
 esac

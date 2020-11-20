@@ -9,6 +9,7 @@ volumes:
   tmp:
   opdata:
   bundle:
+  npm:
   pgdata-test:
   tmp-test:
   fedata-test:
@@ -148,6 +149,32 @@ services:
       - "opdata:/var/openproject/assets"
       - "bundle:/usr/local/bundle"
       - "tmp-test:/home/dev/openproject/tmp"
+
+  ci:
+    build:
+      context: ./docker/ci/
+      dockerfile: Dockerfile
+    command: bash
+    hostname: ci
+    environment:
+      RAILS_ENV: test
+      OPENPROJECT_RAILS__RELATIVE__URL__ROOT: "${OPENPROJECT_RAILS__RELATIVE__URL__ROOT:-}"
+      SELENIUM_GRID_URL: http://selenium-hub:4444/wd/hub
+      CAPYBARA_SERVER_PORT: 3000
+      CAPYBARA_DYNAMIC_HOSTNAME: 0
+      CAPYBARA_APP_HOSTNAME: ci
+      OPENPROJECT_DISABLE_DEV_ASSET_PROXY: 1
+      OPENPROJECT_TESTING_NO_HEADLESS: "true"
+    volumes:
+      - ".:/home/dev/openproject"
+      - "fedata-test:/home/dev/openproject/public/assets/frontend"
+      - "bundle:/usr/local/bundle"
+      - "tmp:/home/dev/openproject/tmp"
+      - "npm:/home/dev/openproject/frontend/node_modules"
+    networks:
+      - testing
+    depends_on:
+      - selenium-hub
 
   selenium-hub:
     image: selenium/hub:latest
