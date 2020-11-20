@@ -165,6 +165,8 @@ services:
       CAPYBARA_APP_HOSTNAME: ci
       OPENPROJECT_DISABLE_DEV_ASSET_PROXY: 1
       OPENPROJECT_TESTING_NO_HEADLESS: "true"
+    tmpfs:
+      - "/tmp"
     volumes:
       - ".:/home/dev/openproject"
       - "fedata-test:/home/dev/openproject/public/assets/frontend"
