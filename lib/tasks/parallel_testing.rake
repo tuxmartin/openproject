@@ -50,7 +50,8 @@ namespace :parallel do
   class ParallelParser
     def self.with_args(args, allow_seed = true)
       options = {}
-      parseable_args = args[3..-1]
+      p [:args, args]
+      parseable_args = args[2..-1]
       if parseable_args
         OptionParser.new do |opts|
           opts.banner = "Usage: rails #{args[0]} -- [options]"
@@ -65,6 +66,7 @@ namespace :parallel do
   end
 
   def group_option_string(parsed_options)
+    p [:parsed_options, parsed_options]
     group_options  = parsed_options ? "-n #{parsed_options[:num_cpus]}" : ''
     group_options += " --only-group #{parsed_options[:group]}" if parsed_options[:group]
 
