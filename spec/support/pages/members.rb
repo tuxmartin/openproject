@@ -26,6 +26,7 @@
 # See docs/COPYRIGHT.rdoc for more details.
 #++
 
+require 'support/components/ng_select_autocomplete_helpers'
 require 'support/pages/page'
 
 module Pages
